@@ -21,9 +21,10 @@
 :root {
   --page: rgb(255,255,255);
   --color: rgb(0,0,0);
+  --color-faded: rgb(230,230,230);
   --hero-font-size: 14vw;
-  --hero-font-weight: 450;
-  --hero-letter-spacing: -0.05em;
+  --hero-font-weight: 480;
+  --hero-letter-spacing: -0.06em;
   --hero-line-height: 0.66;
   --hero-color: color(display-p3 1 0.432 0.37 / 1);
 }
@@ -32,6 +33,8 @@
   :root {
     --page: rgb(0,0,0);
     --color: rgb(255,255,255);
+    --color-faded: rgb(50,50,50);
+    --hero-font-weight: 450;
   }
 }
 
@@ -92,17 +95,27 @@ header {
 }
 
 body > section {
+  position: relative;
   padding: 1.25em 1.5em;
   scroll-snap-align: start;
   scroll-margin: calc(2.5em + 46px);
+  color: var(--color-faded);
+  transition: 0.6s ease-out;
   a {
+    display: inline-block;
     font-size: var(--hero-font-size);
     font-weight: var(--hero-font-weight);
     letter-spacing: var(--hero-letter-spacing);
     line-height: var(--hero-line-height);
+    text-indent: -0.075em;
   }
-  strong {
-    color: var(--hero-color);
+  &.is-snapped {
+    z-index: 20;
+    color: var(--color);
+    transition: 0.1s ease-out;
+    strong {
+      color: var(--hero-color);
+    }
   }
 }
 
@@ -121,6 +134,7 @@ main {
     letter-spacing: var(--hero-letter-spacing);
     line-height: var(--hero-line-height);
     margin-bottom: auto;
+    text-indent: -0.075em;
     strong {
       color: var(--hero-color);
     }

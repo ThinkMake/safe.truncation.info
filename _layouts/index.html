@@ -11,5 +11,31 @@
     <section><a href="{{ item.url }}">{{ item.problem | raw }}</a></section>
     {% endfor %}
     {% include footer.html %}
+    <script>
+      const sections = document.querySelectorAll('body > section');
+
+      function updateSnapped() {
+        const snapOffset = parseFloat(getComputedStyle(sections[0]).scrollMarginTop);
+        let nearest = null;
+        let minDist = Infinity;
+
+        sections.forEach(section => {
+          const dist = Math.abs(section.getBoundingClientRect().top - snapOffset);
+          if (dist < minDist) { minDist = dist; nearest = section; }
+        });
+
+        sections.forEach(s => s.classList.remove('is-snapped'));
+        if (nearest) nearest.classList.add('is-snapped');
+      }
+
+      let scrollTimer;
+      document.body.addEventListener('scrollend', updateSnapped);
+      document.body.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(updateSnapped, 100);
+      });
+
+      updateSnapped();
+    </script>
   </body>
 </html>
