@@ -5,3 +5,5 @@ problem: "<strong>Ass</strong>ign"
 solution: ""
 bad_word: "ass"
 ---
+
+Assign means to allocate a task, role, or value to someone or something. From Latin assignare, to mark out. Used in computing (assigning variables), law (assigning rights), and workplace contexts (assigning duties). Also means to attribute a cause or place. Functions as verb; the related noun is assignment. Neutral professional&nbsp;register.
