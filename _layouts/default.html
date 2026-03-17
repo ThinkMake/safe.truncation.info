@@ -11,7 +11,8 @@
         {{ page.problem | raw }}
       </h1>
       <section>
-        {% assign subpage = site.words_bad | where: 'section', {{ page.bad_word }} %}
+        {% assign bad_word_title = page.bad_word | capitalize %}
+        {% assign subpage = site.words_bad | where: 'title', bad_word_title %}
         <div>
           <h2>{{ subpage[0].title }}</h2>
           <p>{{ subpage[0].content }}</p>
