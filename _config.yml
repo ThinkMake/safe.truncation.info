@@ -1,0 +1,10 @@
+url: "https://safe.truncation.info" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+title: "Safe Truncation Information" # the name of your site, e.g. ACME Corp.
+
+collections:
+  words:
+    output: true
+    permalink: /:name
+  words_bad:
+    output: false

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    {% include head.html %}
+    <title>{{ site.title }}</title>
+  </head>
+  <body>
+    {% include header.html %}
+    {% assign sorted_items = site.words | sort_natural: "title" %}
+    {% for item in sorted_items %}
+    <section><a href="{{ item.url }}">{{ item.problem | raw }}</a></section>
+    {% endfor %}
+    {% include footer.html %}
+  </body>
+</html>

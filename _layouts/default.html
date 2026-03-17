@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    {% include head.html %}
+    <title>{{ page.title }} ({{ site.title }})</title>
+  </head>
+  <body>
+    {% include header.html %}
+    <main>
+      <h1>
+        {{ page.problem | raw }}
+      </h1>
+      <section>
+        {% assign subpage = site.words_bad | where: 'section', {{ page.bad_word }} %}
+        <div>
+          <h2>{{ subpage[0].title }}</h2>
+          <p>{{ subpage[0].content }}</p>
+        </div>
+        <div>
+          <h2>{{ page.title }}</h2>
+          <p>{{ content }}</p>
+        </div>
+      </section>
+    </main>
+    {% include footer.html %}
+  </body>
+</html>
