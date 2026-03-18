@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    {% include head.html %}
+    <title>{{ page.title }} ({{ site.title }})</title>
+  </head>
+  <body>
+    {% include header.html %}
+    <main>
+      <h1>
+        Readme
+      </h1>
+      
+      <div id="content">
+        {{ page.content | markdownify }}
+      </div>
+      
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

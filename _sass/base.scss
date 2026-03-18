@@ -15,18 +15,23 @@
   font-weight: inherit;
   letter-spacing: inherit;
   line-height: inherit;
-  text-decoration: inherit;
+  text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.125em;
 }
 
 :root {
   --page: rgb(255,255,255);
+  --gutter-x: 8vw;
+  --gutter-y: 1.25rem;
   --color: rgb(0,0,0);
   --color-faded: rgb(230,230,230);
-  --hero-font-size: 14vw;
+  --hero-font-size: 12vw;
   --hero-font-weight: 480;
   --hero-letter-spacing: -0.06em;
   --hero-line-height: 0.66;
   --hero-color: color(display-p3 1 0.432 0.37 / 1);
+  --blockquote-bg: rgba(126,126,126,0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +40,7 @@
     --color: rgb(255,255,255);
     --color-faded: rgb(50,50,50);
     --hero-font-weight: 450;
+    --blockquote-bg: rgba(126,126,126,0.2);
   }
 }
 
@@ -74,7 +80,7 @@ body::-webkit-scrollbar {
 header {
   position: sticky;
   top: 0;
-  padding: 1.25em 1.5em;
+  padding: var(--gutter-y) var(--gutter-x);
   z-index: 100;
   display: flex;
   flex-direction: row;
@@ -83,6 +89,12 @@ header {
   & > a {
     display: flex;
     flex-direction: column;
+    &:hover,
+    &:focus {
+      span:first-child {
+        text-decoration: underline;
+      }
+    }
   }
   span {
     font-size: 20px;
@@ -96,11 +108,14 @@ header {
 
 body > section {
   position: relative;
-  padding: 1.25em 1.5em;
+  padding: var(--gutter-y) var(--gutter-x);
   scroll-snap-align: start;
   scroll-margin: calc(2.5em + 46px);
   color: var(--color-faded);
   transition: 0.6s ease-out;
+  &:last-of-type {
+    margin-bottom: calc(100vh - 14vw);
+  }
   a {
     display: inline-block;
     font-size: var(--hero-font-size);
@@ -120,12 +135,12 @@ body > section {
 }
 
 main {
-  padding: 1.25rem 1.5rem;
+  padding: var(--gutter-y) var(--gutter-x);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   flex-grow: 2;
-  gap: 1.25rem;
+  gap: 3.5rem;
   // align-items: center;
   h1 {
     width: 100%;
@@ -133,8 +148,8 @@ main {
     font-weight: var(--hero-font-weight);
     letter-spacing: var(--hero-letter-spacing);
     line-height: var(--hero-line-height);
-    margin-bottom: auto;
     text-indent: -0.075em;
+    margin-bottom: auto;
     strong {
       color: var(--hero-color);
     }
@@ -142,16 +157,63 @@ main {
   section {
     display: flex;
     flex-direction: row;
-    gap: 1.5em;
+    gap: var(--gutter-y);
+    max-width: 42rem;
     div {
-      width: 18em;
+      flex-grow: 2;
       h2 {
         font-size: 20px;
         line-height: 1.15;
         padding-bottom: 0.2rem;
+        // padding-right: var(--gutter-y);
+        // float: left;
       }
+      // &:nth-child(2) {
+      //   color: var(--hero-color);
+      // }
       p {
         hyphens: auto;
+      }
+    }
+  }
+  #content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--gutter-y);
+    p {
+      font-size: 20px;
+      line-height: 1.15;
+    }
+  }
+  blockquote {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    gap: var(--gutter-y);
+    // background: var(--blockquote-bg);
+    border-radius: 2.5rem;
+    border: 1.5px solid;
+    cite {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      span {
+        font-weight: 400;
+        opacity: 0.6;
+      }
+    }
+    p {
+      line-height: 1.25!important;
+      span {
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      em {
+        color: var(--hero-color);
       }
     }
   }
@@ -159,22 +221,32 @@ main {
 
 footer {
   position: sticky;
+  box-sizing: border-box;
   bottom: 0;
-  padding: 2.5em 1.5em 1.25em;
+  width: 100%;
+  padding: 2.5em var(--gutter-x) var(--gutter-y);
   margin-top: auto;
   z-index: 100;
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  gap: 1.25rem;
+  // justify-content: center;
+  gap: var(--gutter-y);
   h3 {
     display: flex;
     align-items: center;
-    margin: 0.15em 0 0.15em;
-    padding: 0 0.75rem 0.1em;
-    border-radius: 100%;
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 37px;
+    padding-bottom: 1px;
+    margin-right: -0.05em;
+  }
+  hr {
+    width: 4.5rem;
+    height: 1.5px;
+    border: none;
     background: var(--color);
-    color: var(--page);
+    margin: auto 0;
   }
   a {
     font-size: 20px;

@@ -10,16 +10,21 @@
       <h1>
         {{ page.problem | raw }}
       </h1>
+            
+      <div id="content">
+        {{ page.content | markdownify }}
+      </div>
+
       <section>
         {% assign bad_word_title = page.bad_word | capitalize %}
         {% assign subpage = site.words_bad | where: 'title', bad_word_title %}
         <div>
-          <h2>{{ subpage[0].title }}</h2>
-          <p>{{ subpage[0].content }}</p>
+          <h2>{{ page.title }}</h2>
+          <p>{{ page.definition }}</p>
         </div>
         <div>
-          <h2>{{ page.title }}</h2>
-          <p>{{ content }}</p>
+          <h2>{{ subpage[0].title }}</h2>
+          <p>{{ subpage[0].content }}</p>
         </div>
       </section>
     </main>
