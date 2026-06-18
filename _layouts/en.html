@@ -6,21 +6,19 @@
   </head>
   <body>
     {% include header.html %}
-    {% assign sorted_items = site.words | sort_natural: "title" %}
+    {% assign sorted_items = site.data.en | sort_natural: "word" %}
     {% for item in sorted_items %}
-    <section id="{{ item.title | replace: ' ', '-' }}">
+    <section id="{{ item.word | replace: ' ', '-' }}" lang="{{ item.lang }}">
       <details>
         <summary>{{ item.problem | raw }}</summary>
         <div class="detail">
-          {% assign bad_word_title = item.bad_word | capitalize %}
-          {% assign subpage = site.words_bad | where: 'title', bad_word_title %}
           <div>
-            <h2>{{ item.title }}</h2>
+            <h2>{{ item.word }}</h2>
             <p>{{ item.definition }}</p>
           </div>
           <div>
-            <h2>{{ subpage[0].title }}</h2>
-            <p>{{ subpage[0].content }}</p>
+            <h2>{{ item.bad_word | capitalize }}</h2>
+            <p>{{ item.bad_word_definition }}</p>
           </div>
         </div>
       </details>
@@ -28,9 +26,9 @@
     {% endfor %}
     <nav>
       <div>
-      {% assign sorted_items = site.words | sort_natural: "title" %}
+      {% assign sorted_items = site.data.en | sort_natural: "word" %}
       {% for item in sorted_items %}
-        <a href="#{{ item.title | replace: ' ', '-' }}">{{ item.title }}</a>
+        <a href="#{{ item.word | replace: ' ', '-' }}">{{ item.word }}</a>
       {% endfor %}
       </div>
     </nav>
@@ -46,7 +44,7 @@
         <button id="cw-dismiss">I understand</button>
       </div>
     </div>
-    {% include footer.html %}
+    {% include footer.html lang="en" %}
     <script>
       const nav = document.querySelector('nav');
 

@@ -1,5 +1,5 @@
 ---
-layout: index
+layout: en
 title: "Happy Jekylling!"
 ---
 

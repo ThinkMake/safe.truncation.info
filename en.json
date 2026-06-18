@@ -1,0 +1,12 @@
+---
+layout: null
+---
+{% assign sorted_items = site.data.en | sort_natural: "word" %}
+[{% for item in sorted_items %}
+  {
+    "word": {{ item.word | jsonify }},
+    "bad_word": {{ item.bad_word | jsonify }},
+    "definition": {{ item.definition | strip_html | strip_newlines | jsonify }},
+    "bad_word_definition": {{ item.bad_word_definition | strip_html | strip_newlines | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}]
