@@ -8,19 +8,19 @@
     {% include header.html %}
     {% assign sorted_items = site.words | sort_natural: "title" %}
     {% for item in sorted_items %}
-    <section id="{{ item.title }}">
+    <section id="{{ item.title | replace: ' ', '-' }}">
       <details>
         <summary>{{ item.problem | raw }}</summary>
         <div class="detail">
           {% assign bad_word_title = item.bad_word | capitalize %}
           {% assign subpage = site.words_bad | where: 'title', bad_word_title %}
           <div>
-            <h2>{{ subpage[0].title }}</h2>
-            <p>{{ subpage[0].content }}</p>
-          </div>
-          <div>
             <h2>{{ item.title }}</h2>
             <p>{{ item.definition }}</p>
+          </div>
+          <div>
+            <h2>{{ subpage[0].title }}</h2>
+            <p>{{ subpage[0].content }}</p>
           </div>
         </div>
       </details>
@@ -30,10 +30,19 @@
       <div>
       {% assign sorted_items = site.words | sort_natural: "title" %}
       {% for item in sorted_items %}
-        <a href="#{{ item.title }}">{{ item.title }}</a>
+        <a href="#{{ item.title | replace: ' ', '-' }}">{{ item.title }}</a>
       {% endfor %}
       </div>
     </nav>
+    <div id="content-warning" aria-modal="true" role="dialog" aria-labelledby="cw-heading">
+      <div>
+        <p id="cw-heading">safe.truncation.info</p>
+        <p>Safe Truncation Information is a resource to help you avoid embarrassing mistakes with machine-generated writing.</p>
+        <p>As such, it contains offensive language.</p>
+        <p>Please use this site with discretion and sensitivity to others who might be around you.</p>
+        <button id="cw-dismiss">I understand</button>
+      </div>
+    </div>
     {% include footer.html %}
     <script>
       const nav = document.querySelector('nav');
@@ -83,6 +92,14 @@
         scrollTimer = setTimeout(updateSnapped, 100);
       });
 
+      if (location.hash) {
+        const section = document.querySelector(location.hash);
+        if (section) {
+          const details = section.querySelector('details');
+          if (details) details.open = true;
+        }
+      }
+
       updateSnapped();
 
       document.querySelectorAll('body > section details').forEach(details => {
@@ -92,6 +109,15 @@
             if (section) location.hash = section.id;
           }
         });
+      });
+
+      const cw = document.getElementById('content-warning');
+      if (!sessionStorage.getItem('cw-dismissed')) {
+        cw.classList.add('is-visible');
+      }
+      document.getElementById('cw-dismiss').addEventListener('click', () => {
+        cw.classList.remove('is-visible');
+        sessionStorage.setItem('cw-dismissed', '1');
       });
     </script>
   </body>
