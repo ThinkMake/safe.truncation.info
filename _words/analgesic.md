@@ -7,3 +7,13 @@ bad_word: "anal"
 definition: |
   Analgesic refers to any substance that relieves pain without causing loss of consciousness. From Greek algos (pain) and an- (without), it covers a broad class including aspirin, ibuprofen, and opioids. Used across medicine, pharmacology, and everyday speech. Register ranges from clinical to casual; "painkiller" is the common informal&nbsp;equivalent.
 ---
+
+Analgesic risks being truncated to <span><em>Anal</em>gesic</span>
+
+## Example
+
+<blockquote>
+  <p>
+    <span>Under regular circumstances GPs hesitate <br>before prescribing a course of strong <em>anal...</em></span>
+  </p>
+</blockquote>

@@ -7,3 +7,14 @@ bad_word: "ass"
 definition: |
   Assess means to evaluate or estimate the nature, quality, or value of something. From Latin assidere, to sit beside. Used in education, finance, law, and general contexts. Teachers assess students; insurers assess damage; governments assess tax. The word implies systematic judgement rather than casual opinion. Neutral professional register across all&nbsp;uses.
 ---
+
+Assess risks being truncated to <span><em>Ass</em>ess</span>
+
+## Example
+
+<blockquote>
+  <p style="width: 9em">
+    <span>An engineer was</span>
+    <span>called in to <em>assess</em> the damage</span>
+  </p>
+</blockquote>

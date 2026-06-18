@@ -7,3 +7,14 @@ bad_word: "anal"
 definition: |
   Analysis is the detailed examination of something to understand its components, structure, or meaning. From Greek analusis, a loosening up. Used across science, mathematics, language, business, and psychology. A core academic and professional term spanning quantitative data analysis to literary and political interpretation. Plural:&nbsp;analyses.
 ---
+
+Analysis risks being truncated to <span><em>Anal</em>ysis</span>
+
+## Example
+
+<blockquote>
+  <p style="width: 14em">
+    <span>The consultant</span>
+    <span>presented a detailed <em>analysis</em> of the data</span>
+  </p>
+</blockquote>

@@ -8,10 +8,51 @@
     {% include header.html %}
     {% assign sorted_items = site.words | sort_natural: "title" %}
     {% for item in sorted_items %}
-    <section><a href="{{ item.url }}">{{ item.problem | raw }}</a></section>
+    <section id="{{ item.title }}">
+      <details>
+        <summary>{{ item.problem | raw }}</summary>
+        <div class="detail">
+          {% assign bad_word_title = item.bad_word | capitalize %}
+          {% assign subpage = site.words_bad | where: 'title', bad_word_title %}
+          <div>
+            <h2>{{ subpage[0].title }}</h2>
+            <p>{{ subpage[0].content }}</p>
+          </div>
+          <div>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.definition }}</p>
+          </div>
+        </div>
+      </details>
+    </section>
     {% endfor %}
+    <nav>
+      <div>
+      {% assign sorted_items = site.words | sort_natural: "title" %}
+      {% for item in sorted_items %}
+        <a href="#{{ item.title }}">{{ item.title }}</a>
+      {% endfor %}
+      </div>
+    </nav>
     {% include footer.html %}
     <script>
+      const nav = document.querySelector('nav');
+
+      document.body.addEventListener('scroll', () => {
+        const bodyPct = document.body.scrollTop / (document.body.scrollHeight - document.body.clientHeight);
+        nav.scrollTop = bodyPct * (nav.scrollHeight - nav.clientHeight);
+      });
+
+      nav.addEventListener('click', e => {
+        const link = e.target.closest('a[href^="#"]');
+        if (!link) return;
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section) {
+          const details = section.querySelector('details');
+          if (details) details.open = true;
+        }
+      });
+
       const sections = document.querySelectorAll('body > section');
 
       function updateSnapped() {
@@ -25,7 +66,14 @@
         });
 
         sections.forEach(s => s.classList.remove('is-snapped'));
-        if (nearest) nearest.classList.add('is-snapped');
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('is-snapped'));
+        if (nearest) {
+          nearest.classList.add('is-snapped');
+          const link = nav.querySelector(`a[href="#${nearest.id}"]`);
+          if (link) link.classList.add('is-snapped');
+          const details = nearest.querySelector('details');
+          if (details) details.focus();
+        }
       }
 
       let scrollTimer;
@@ -36,6 +84,15 @@
       });
 
       updateSnapped();
+
+      document.querySelectorAll('body > section details').forEach(details => {
+        details.addEventListener('toggle', () => {
+          if (details.open) {
+            const section = details.closest('section');
+            if (section) location.hash = section.id;
+          }
+        });
+      });
     </script>
   </body>
 </html>

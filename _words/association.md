@@ -7,3 +7,14 @@ bad_word: "ass"
 definition: |
   Association is a connection between things, or an organised group sharing a common purpose. From Latin associatio. Used in psychology (free association), sport (football association), business, and law. The word covers both mental linkage and institutional grouping. "By association" implies guilt or credit through connection to others. Neutral register across all&nbsp;uses.
 ---
+
+Association risks being truncated to <span><em>Ass</em>ociation</span>
+
+## Example
+
+<blockquote>
+  <p style="width: 17.5em">
+    <span>After moving to the area Priya</span>
+    <span>joined the local residents' <em>association</em></span>
+  </p>
+</blockquote>
