@@ -79,7 +79,6 @@ body {
   flex-direction: column;
   background: var(--page);
   scroll-behavior: smooth;
-  // align-items: center;
 }
 
 *::-webkit-scrollbar {
@@ -475,6 +474,7 @@ footer {
   position: sticky;
   box-sizing: border-box;
   bottom: 0;
+  bottom: env(safe-area-inset-bottom);
   width: 100%;
   padding: 2.5em var(--gutter-x) calc(var(--gutter-y) * 2);
   margin-top: auto;
