@@ -48,6 +48,7 @@
 
 @media (max-width: 800px) {
   :root {
+    --hero-font-size: 11.5vw;
     --hero-letter-spacing: -0.04em;
   }
 }
@@ -107,6 +108,12 @@ header {
   span {
     font-size: 20px;
     line-height: 1.15;
+    @media (max-width: 600px) {
+      font-size: 11px;
+      font-weight: var(--font-weight);
+      letter-spacing: 0.01em;
+      line-height: 1.2;  
+    }
     span {
       visibility: hidden;
     }
@@ -203,12 +210,12 @@ body > section {
 }
 
 main {
-  padding: var(--gutter-y) var(--gutter-x);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   flex-grow: 2;
   gap: 3.5rem;
+  padding: calc(var(--hero-font-size) * 0.125) var(--gutter-x);
   h1 {
     width: 100%;
     font-size: var(--hero-font-size);
@@ -216,7 +223,6 @@ main {
     letter-spacing: var(--hero-letter-spacing);
     line-height: var(--hero-line-height);
     text-indent: -0.075em;
-    height: 33.33vh;
     strong {
       color: var(--hero-color);
     }
@@ -244,7 +250,7 @@ main {
     align-items: start;
     flex-direction: column;
     gap: var(--gutter-y);
-    padding-bottom: 25vh;
+    padding: 25vh 0;
     font-weight: calc(var(--font-weight) *0.96);
     @media (max-width: 900px) {
       font-weight: var(--font-weight);
@@ -315,10 +321,6 @@ main {
       }
       @media (max-width: 800px) {
         width: 100%;
-      }
-      @media (max-width: 520px) {
-        font-size: 16px;
-        line-height: 1.2;
       }
     }
     .comparison {
@@ -486,6 +488,13 @@ footer {
   gap: 0.66rem var(--gutter-y);
   font-size: 20px;
   line-height: 1.15;
+  @media (max-width: 600px) {
+    font-size: 11px;
+    font-weight: var(--font-weight);
+    letter-spacing: 0.01em;
+    line-height: 1.2;  
+    padding: var(--gutter-y) var(--gutter-x);
+  }
   h3 {
     order: 1;
   }
