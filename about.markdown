@@ -2,6 +2,7 @@
 layout: about
 title: About
 permalink: /about/
+lang: en
 ---
 
 In October 2025, Sky News published a political comment piece. Same news, different day. This one went viral. Why? Because of how modern devices notified readers of the headline.
@@ -29,25 +30,25 @@ In a traditional media setting with strict layout rules (newspapers, television 
 
 No human subeditor would have truncated the Sky News headline that way, but human subediting doesn't scale to an endless variation of digital devices. Truncation is a blunt force technical solution to deal with the need to display near-infinite content in an endless variety of interfaces.
 
-<hr>
+---
 
-<h2><a href="/">Safe Truncation Information</a></h2>
+## Safe Truncation Information
 
 This website is a simple resource that lists common English words that risk being truncated into something embarrassing or potentially offensive. The list contains both the regular word and the undesirable truncated fragments with definitions for both (should you need them).
 
 Using this list, it should be relatively straightforward for engineers to automatically parse a content string before and after truncation, identify any risk words, and catch problematic truncations before rendering.
 
-The list is available in a simple <a href="/{{ include.lang }}.json">json file here</a>. 
+The list is directly available in a [json file here](/en.json). 
 
 It's a simple Jekyll build on Github Pages so it should be pretty stable.
 
-<hr>
+---
 
-<h2>Constructing the list</h2>
+## Constructing the list
 
 The Safe Truncation list isn't quite a banned words list, plenty of those already exist. The issue with truncation is not that an offensive word slips through, its that the meaning of the content could be shifted in an embarrassing way.
 
-With an example like <a href="#Polemic">Polemic/Pole</a> neither word is offensive in general context, but risks being truncated in unexpected ways:
+With an example like [Polemic/Pole](/#Polemic) neither word is offensive in general context, but risks being truncated in unexpected ways:
 
 <div class="comparison">
   <p><span>"Tristan loved nothing more than his</span> <span>professor's long polemics against the</span> <span>dangers of artificial intelligence."</span></p>
@@ -57,12 +58,12 @@ With an example like <a href="#Polemic">Polemic/Pole</a> neither word is offensi
 
 Arguably as the subject of the content gets more serious, so do the implications of these errors. After all, everyone knows how much time academics spend on deep, penetrating analysis.
 
-For this reason the list includes definitions for both the regular word and the undesirable truncated fragments, so that if you're using an LLM to identify problematic truncations it should help with detecting changes in meaning.
+To help identifying context shifts using LLMs the list includes definitions for both the regular word and the undesirable truncated fragments.
 
-<hr>
+---
 
-<h2>Languages other than English</h2>
+## Languages other than English
 
 I don't understand enough about sentence construction in languages other than English to know how widespread an issue truncation might be. I assume it isn't much of an issue with logographic languages like Chinese, but probably impacts compound-heavy languages such as German and Dutch.
 
-Safe Truncation Information is designed to make adding additional languages simple. If you want to contribute (or if I've missed any English words) please do <a href="https://github.com/ThinkMake/safe.truncation.info">get involved on Github</a>.
+Safe Truncation Information is designed to make adding additional languages simple. If you want to contribute (or if I've missed any English words) please do [get involved on Github](https://github.com/ThinkMake/safe.truncation.info).
