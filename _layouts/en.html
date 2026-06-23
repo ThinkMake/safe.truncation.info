@@ -53,6 +53,12 @@
         nav.scrollTop = bodyPct * (nav.scrollHeight - nav.clientHeight);
       });
 
+      document.body.addEventListener('scroll', () => {
+        if (document.documentElement.scrollTop === 0) {
+          document.documentElement.scrollTop = 1;
+        }
+      }, { once: true });
+
       nav.addEventListener('click', e => {
         const link = e.target.closest('a[href^="#"]');
         if (!link) return;
