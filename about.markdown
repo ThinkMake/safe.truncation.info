@@ -51,7 +51,7 @@ The Safe Truncation list isn't quite a banned words list, plenty of those alread
 With an example like [Polemic/Pole](/#Polemic) neither word is offensive in general context, but risks being truncated in unexpected ways:
 
 <div class="comparison">
-  <p><span>"Tristan loved nothing more than his</span> <span>professor's long polemics against the</span> <span>dangers of artificial intelligence."</span></p>
+  <p><span>"Tristan loved nothing more</span> <span>than his professor's long polemics</span> <span>against the dangers of artificial</span> <span>intelligence."</span></p>
   <div>&rarr;</div>
   <p class="bad"><span>"Tristan loved nothing more</span> <span>than his professor's long pole&hellip;"</span></p>
 </div>
