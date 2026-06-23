@@ -40,7 +40,7 @@
     --page: rgb(0,0,0);
     --color: rgb(255,255,255);
     --color-faded: rgb(50,50,50);
-    --font-weight: 480;
+    --font-weight: 440;
     --hero-font-weight: 430;
     --blockquote-bg: rgba(126,126,126,0.15);
   }
@@ -217,6 +217,7 @@ main {
     letter-spacing: var(--hero-letter-spacing);
     line-height: var(--hero-line-height);
     text-indent: -0.075em;
+    height: 50vh;
     strong {
       color: var(--hero-color);
     }
@@ -240,37 +241,81 @@ main {
   }
   #content {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: start;
     align-items: start;
+    flex-direction: column;
     gap: var(--gutter-y);
-    text-wrap: balance;
-    margin: auto 0;
-    & > p {
+    padding-bottom: 25vh;
+    a {
+      text-decoration: underline;
+    }
+    figure {
       width: 100%;
-      span {
-        color: var(--color-faded);
-        em {
-          position: relative;
-          color: var(--hero-color);
-        }
+      display: flex;
+      align-items: start;
+      justify-content: start;
+      flex-direction: column;
+      gap: var(--gutter-y);
+      padding: calc(var(--gutter-y)*3) 0;
+      img {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 90em;
+        max-height: 40vh;
+        object-fit: contain;
+        left: -0.25em;
+      }
+      figcaption {
+        opacity: 40%;
       }
     }
     h2 {
-      padding-top: var(--gutter-y);
-    }
-    h2, p {
       font-size: 20px;
       line-height: 1.15;
+      margin-bottom: var(--gutter-y);
     }
-    blockquote {
-      position: relative;
-      padding: var(--gutter-y) calc(var(--gutter-y) * 1.25);
-      background: var(--blockquote-bg);
-      border-radius: 1.5em;
-      em {
+    p {
+      font-size: 20px;
+      line-height: 1.15;
+      max-width: 33em;
+      hyphens: auto;
+      text-wrap: pretty;
+    }
+    .comparison {
+      display: flex;
+      flex-direction: row;
+      text-wrap: none;
+      padding: calc(var(--gutter-y)*1) 0;
+      gap: var(--gutter-y);
+      span {
+        display: block;
+        white-space: nowrap;
+        &:first-child {
+          text-indent: -0.4em;
+        }
+      }
+      .bad {
         color: var(--hero-color);
       }
+      div {
+        font-size: 200%;
+        line-height: 44px;
+        font-weight: 100;
+        padding-right: calc(var(--gutter-y) *0.5);
+      }
+    }
+    hr {
+      display: block;
+      width: 100%;
+      margin: calc(var(--gutter-y)*6) 0;
+      border: none;
+      height: 1px;
+      background: var(--color);
+      font-size: 20px;
+      max-width: 33em;
+      opacity: 40%;
     }
   }
 }
