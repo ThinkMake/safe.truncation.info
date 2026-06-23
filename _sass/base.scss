@@ -55,7 +55,7 @@
 html {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   color: var(--color);
   font-family: "STI", sans-serif;
@@ -70,9 +70,9 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
   box-sizing: border-box;
   width: 100vw;
-  height: 100dvh;
   overflow: scroll;
   scroll-snap-type: y proximity;
   display: flex;
