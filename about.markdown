@@ -1,6 +1,6 @@
 ---
 layout: about
-title: Safe truncation
+title: About
 permalink: /about/
 ---
 
