@@ -54,7 +54,7 @@ With an example like [Polemic/Pole](/#Polemic) neither word is offensive in gene
 
 Arguably as the subject of the content gets more serious, so do the implications of these errors. After all, everyone knows how much time academics spend on deep, penetrating analysis.
 
-To help identifying context shifts using LLMs the list includes definitions for both the regular word and the undesirable truncated fragments.
+To help identify shifts in meaning using LLMs the list includes definitions for both the regular word and the undesirable truncated fragments.
 
 ## Languages other than English
 
