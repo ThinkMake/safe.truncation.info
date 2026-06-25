@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta charset="utf-8">
+    <title>Safe Truncation Information - Making publishing unfunny again since 2026</title>
+    <meta name="description" content="A site cataloguing words that produce offensive or misleading results when truncated — for example, 'Analgesic' truncated to 'Anal...'. The project helps developers and content designers identify and handle these cases safely.">
+    <style type="text/css">
+      *::-webkit-scrollbar {
+        display: none;
+      }
+      html {
+        position: relative;
+        height: 100dvh;
+        scroll-snap-type: y proximity;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      div {
+        position: relative;
+        box-sizing: border-box;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0 0.25em;
+        height: 15vh;
+        flex-shrink: 0;
+        font-family: system-ui;
+        font-weight: 200;
+        font-size: 13vh;
+        line-height: 15vh;
+        letter-spacing: -0.05em;
+        text-shadow: 0 0 1em white;
+      }
+      div:after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(40deg, rgba(255,255,255,1), rgba(0,0,0,1));
+        mix-blend-mode: difference;
+      }
+      div:nth-child(1) {
+        background: color(display-p3 1 0 0);
+      }
+      div:nth-child(2) {
+        background: color(display-p3 1 0.25 0);
+      }
+      div:nth-child(3) {
+        background: color(display-p3 1 0.5 0);
+      }
+      div:nth-child(4) {
+        background: color(display-p3 1 0.75 0);
+      }
+      div:nth-child(5) {
+        background: color(display-p3 1 1 0);
+      }
+      div:nth-child(6) {
+        background: color(display-p3 0.75 1 0);
+      }
+      div:nth-child(7) {
+        background: color(display-p3 0.5 1 0);
+      }
+      div:nth-child(8) {
+        background: color(display-p3 0.25 1 0);
+      }
+      div:nth-child(9) {
+        background: color(display-p3 0 1 0);
+      }
+      div:nth-child(10) {
+        background: color(display-p3 0 1 0.25);
+      }
+      div:nth-child(11) {
+        background: color(display-p3 0 1 0.5);
+      }
+      div:nth-child(12) {
+        background: color(display-p3 0 1 0.75);
+      }
+      div:nth-child(13) {
+        background: color(display-p3 0 1 1);
+      }
+      div:nth-child(14) {
+        background: color(display-p3 0 0.75 1);
+      }
+      div:nth-child(15) {
+        background: color(display-p3 0 0.5 1);
+      }
+      div:nth-child(16) {
+        background: color(display-p3 0.25 0 1);
+      }
+      div:nth-child(17) {
+        background: color(display-p3 0.5 0 1);
+      }
+      div:nth-child(18) {
+        background: color(display-p3 0.75 0 1);
+      }
+      div:nth-child(19) {
+        background: color(display-p3 1 0 1);
+      }
+      div:nth-child(20) {
+        background: color(display-p3 1 0 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+    <div>16</div>
+    <div>17</div>
+    <div>18</div>
+    <div>19</div>
+    <div>20</div>
+  </body>
+</html>

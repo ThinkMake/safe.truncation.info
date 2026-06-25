@@ -2,7 +2,6 @@
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
     {% include head.html %}
-    <title>{{ site.title }}</title>
   </head>
   <body>
     {% include header.html %}
@@ -47,17 +46,12 @@
     {% include footer.html lang="en" %}
     <script>
       const nav = document.querySelector('nav');
+      const html = document.documentElement;
 
-      document.body.addEventListener('scroll', () => {
-        const bodyPct = document.body.scrollTop / (document.body.scrollHeight - document.body.clientHeight);
-        nav.scrollTop = bodyPct * (nav.scrollHeight - nav.clientHeight);
+      window.addEventListener('scroll', () => {
+        const pct = window.scrollY / (html.scrollHeight - window.innerHeight);
+        nav.scrollTop = pct * (nav.scrollHeight - nav.clientHeight);
       });
-
-      document.body.addEventListener('scroll', () => {
-        if (document.documentElement.scrollTop === 0) {
-          document.documentElement.scrollTop = 1;
-        }
-      }, { once: true });
 
       nav.addEventListener('click', e => {
         const link = e.target.closest('a[href^="#"]');
@@ -93,8 +87,8 @@
       }
 
       let scrollTimer;
-      document.body.addEventListener('scrollend', updateSnapped);
-      document.body.addEventListener('scroll', () => {
+      window.addEventListener('scrollend', updateSnapped);
+      window.addEventListener('scroll', () => {
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(updateSnapped, 100);
       });
