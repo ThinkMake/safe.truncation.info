@@ -121,7 +121,7 @@ body > section {
   padding: calc(var(--hero-font-size) * 0.09) var(--gutter-x);
   flex-shrink: 0;
   scroll-snap-align: start;
-  scroll-margin: calc(var(--gutter-y) *3);
+  scroll-margin: calc(var(--gutter-y) *4);
   color: var(--color-faded);
   transition: color 0.6s ease-out;
   &:last-of-type {
