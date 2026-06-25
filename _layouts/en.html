@@ -47,76 +47,88 @@
     <script>
       const nav = document.querySelector('nav');
       const html = document.documentElement;
+      const sections = document.querySelectorAll('body > section');
 
+      // Nav parallax
       window.addEventListener('scroll', () => {
         const pct = window.scrollY / (html.scrollHeight - window.innerHeight);
         nav.scrollTop = pct * (nav.scrollHeight - nav.clientHeight);
-      });
+      }, { passive: true });
 
-      nav.addEventListener('click', e => {
-        const link = e.target.closest('a[href^="#"]');
-        if (!link) return;
-        const section = document.querySelector(link.getAttribute('href'));
-        if (section) {
-          const details = section.querySelector('details');
-          if (details) details.open = true;
-        }
-      });
+      // Apply .is-snapped to a given section, removing it from all others
+      function applySnapped(section) {
+        sections.forEach(s => s.classList.remove('is-snapped'));
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('is-snapped'));
+        if (!section) return;
+        section.classList.add('is-snapped');
+        const link = nav.querySelector(`a[href="#${section.id}"]`);
+        if (link) link.classList.add('is-snapped');
+      }
 
-      const sections = document.querySelectorAll('body > section');
-
-      function updateSnapped() {
+      // Find whichever section is closest to the snap point
+      function getSnappedSection() {
         const snapOffset = parseFloat(getComputedStyle(sections[0]).scrollMarginTop);
         let nearest = null;
         let minDist = Infinity;
-
         sections.forEach(section => {
           const dist = Math.abs(section.getBoundingClientRect().top - snapOffset);
           if (dist < minDist) { minDist = dist; nearest = section; }
         });
-
-        sections.forEach(s => s.classList.remove('is-snapped'));
-        document.querySelectorAll('nav a').forEach(a => a.classList.remove('is-snapped'));
-        if (nearest) {
-          nearest.classList.add('is-snapped');
-          const link = nav.querySelector(`a[href="#${nearest.id}"]`);
-          if (link) link.classList.add('is-snapped');
-          const details = nearest.querySelector('details');
-          if (details) details.focus();
-        }
+        return nearest;
       }
 
+      // When a summary is toggled, update hash and snap to its section
       let scrollTimer;
-      window.addEventListener('scrollend', updateSnapped);
-      window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(updateSnapped, 100);
-      });
-
-      if (location.hash) {
-        const section = document.querySelector(location.hash);
-        if (section) {
-          const details = section.querySelector('details');
-          if (details) details.open = true;
-        }
-      }
-
-      updateSnapped();
-
+      let suppressScrollSnap = false;
+      let suppressTimer;
       document.querySelectorAll('body > section details').forEach(details => {
         details.addEventListener('toggle', () => {
-          if (details.open) {
-            const section = details.closest('section');
-            if (section) location.hash = section.id;
-          }
-          updateSnapped();
+          if (!details.open) return;
+          const section = details.closest('section');
+          if (!section) return;
+          history.replaceState(null, '', `#${section.id}`);
+          applySnapped(section);
+          suppressScrollSnap = true;
+          clearTimeout(scrollTimer);
+          clearTimeout(suppressTimer);
+          html.style.scrollSnapType = 'none';
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          suppressTimer = setTimeout(() => {
+            html.style.scrollSnapType = '';
+            suppressScrollSnap = false;
+          }, 1000);
         });
       });
 
-      const cw = document.getElementById('content-warning');
-      if (!sessionStorage.getItem('cw-dismissed')) {
-        cw.classList.add('is-visible');
+      // Update .is-snapped after scroll settles, unless a tap just handled it
+      function onScrollSettle() {
+        if (suppressScrollSnap) return;
+        applySnapped(getSnappedSection());
       }
+      window.addEventListener('scrollend', onScrollSettle, { passive: true });
+      window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(onScrollSettle, 300);
+      }, { passive: true });
+
+      // Nav link click — open the target details
+      nav.addEventListener('click', e => {
+        const link = e.target.closest('a[href^="#"]');
+        if (!link) return;
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section) section.querySelector('details').open = true;
+      });
+
+      // On load: open details if hash present, then set initial snap
+      if (location.hash) {
+        const section = document.querySelector(location.hash);
+        if (section) section.querySelector('details').open = true;
+      }
+      applySnapped(getSnappedSection());
+
+      // Content warning
+      const cw = document.getElementById('content-warning');
+      if (!sessionStorage.getItem('cw-dismissed')) cw.classList.add('is-visible');
       document.getElementById('cw-dismiss').addEventListener('click', () => {
         cw.classList.remove('is-visible');
         sessionStorage.setItem('cw-dismissed', '1');
