@@ -77,10 +77,7 @@
         return nearest;
       }
 
-      // When a summary is toggled, update hash and snap to its section
-      let scrollTimer;
-      let suppressScrollSnap = false;
-      let suppressTimer;
+      // When a summary is toggled, update hash and apply snap
       document.querySelectorAll('body > section details').forEach(details => {
         details.addEventListener('toggle', () => {
           if (!details.open) return;
@@ -88,27 +85,16 @@
           if (!section) return;
           history.replaceState(null, '', `#${section.id}`);
           applySnapped(section);
-          suppressScrollSnap = true;
-          clearTimeout(scrollTimer);
-          clearTimeout(suppressTimer);
-          html.style.scrollSnapType = 'none';
           section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          suppressTimer = setTimeout(() => {
-            html.style.scrollSnapType = '';
-            suppressScrollSnap = false;
-          }, 1000);
         });
       });
 
-      // Update .is-snapped after scroll settles, unless a tap just handled it
-      function onScrollSettle() {
-        if (suppressScrollSnap) return;
-        applySnapped(getSnappedSection());
-      }
-      window.addEventListener('scrollend', onScrollSettle, { passive: true });
+      // Update .is-snapped after scroll settles
+      let scrollTimer;
+      window.addEventListener('scrollend', () => applySnapped(getSnappedSection()), { passive: true });
       window.addEventListener('scroll', () => {
         clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(onScrollSettle, 300);
+        scrollTimer = setTimeout(() => applySnapped(getSnappedSection()), 300);
       }, { passive: true });
 
       // Nav link click — open the target details
