@@ -30,8 +30,6 @@ In a traditional media setting with strict layout rules (newspapers, television 
 
 No human subeditor would have truncated the Sky News headline that way, but human subediting doesn't scale to an endless variation of digital devices. Truncation is a blunt force technical solution to deal with the need to display near-infinite content in an endless variety of interfaces.
 
----
-
 ## Safe Truncation Information
 
 This website is a simple resource that lists common English words that risk being truncated into something embarrassing or potentially offensive. The list contains both the regular word and the undesirable truncated fragments with definitions for both (should you need them).
@@ -41,8 +39,6 @@ Using this list, it should be relatively straightforward for engineers to automa
 The list is directly available in a [json file here](/en.json). 
 
 It's a simple Jekyll build on Github Pages so it should be pretty stable.
-
----
 
 ## Constructing the list
 
@@ -59,8 +55,6 @@ With an example like [Polemic/Pole](/#Polemic) neither word is offensive in gene
 Arguably as the subject of the content gets more serious, so do the implications of these errors. After all, everyone knows how much time academics spend on deep, penetrating analysis.
 
 To help identifying context shifts using LLMs the list includes definitions for both the regular word and the undesirable truncated fragments.
-
----
 
 ## Languages other than English
 
