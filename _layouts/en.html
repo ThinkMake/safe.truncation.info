@@ -2,6 +2,28 @@
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
     {% include head.html %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "DefinedTermSet",
+      "name": "Safe Truncation Information",
+      "description": "A reference glossary of words that produce offensive or misleading results when machine-truncated. Each entry pairs a safe word with its problematic truncation, with definitions for both.",
+      "url": "{{ site.url }}/",
+      "inLanguage": "en",
+      "hasDefinedTerm": [
+        {% assign sorted_ld = site.data.en | sort_natural: "word" %}
+        {% for item in sorted_ld %}
+        {
+          "@type": "DefinedTerm",
+          "name": {{ item.word | jsonify }},
+          "description": {{ item.definition | strip_html | jsonify }},
+          "url": "{{ site.url }}/#{{ item.word | replace: ' ', '-' | downcase }}",
+          "termCode": {{ item.bad_word | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+    </script>
   </head>
   <body>
     {% include header.html %}

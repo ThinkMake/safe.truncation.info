@@ -1,0 +1,37 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# Safe Truncation Information
+
+> A reference glossary of words that produce offensive or misleading results when automatically truncated. Pairs each safe word with its problematic truncation fragment, with plain-language definitions for both.
+
+## Purpose
+
+Machine truncation (cutting text to fit a UI container and appending an ellipsis) can shift the meaning of a string in embarrassing or harmful ways. For example, the word "Analgesic" truncated to "Anal…". This resource helps engineers and content systems identify and catch these cases before rendering.
+
+## Datasets
+{% for lang in site.data %}
+- [{{ site.url }}/{{ lang[0] }}.json]({{ site.url }}/{{ lang[0] }}.json) — {{ lang[1] | size }} entries ({{ lang[0] }})
+{% endfor %}
+Each entry contains:
+- `word` — the safe, complete word
+- `bad_word` — the offensive or misleading truncation fragment
+- `definition` — plain-text definition of the safe word
+- `bad_word_definition` — plain-text definition of the truncation fragment
+
+A Schema.org `DefinedTermSet` with all entries is embedded as JSON-LD in each language page.
+
+## Pages
+
+- [{{ site.url }}/]({{ site.url }}/) — full interactive glossary (English)
+- [{{ site.url }}/about/]({{ site.url }}/about/) — background on the project and how to contribute
+{% for lang in site.data %}- [{{ site.url }}/{{ lang[0] }}.json]({{ site.url }}/{{ lang[0] }}.json) — machine-readable JSON dataset ({{ lang[0] }})
+{% endfor %}
+## Background
+
+The project was prompted by a viral incident in October 2025 in which a Sky News headline was automatically truncated by a device notification system in a way no human subeditor would have chosen. The site aims to make it easy to programmatically detect and avoid such truncations.
+
+## Contributing
+
+The list is maintained on GitHub at https://github.com/ThinkMake/safe.truncation.info. Contributions for additional English words or other languages are welcome.
